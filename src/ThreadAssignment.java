@@ -3,19 +3,27 @@ public class ThreadAssignment {
     static class Counter {
         void count() {
             //todo implement me
+        	for(int i = 350; i>0;i--) {
+        		System.out.println(i);
+        	}
+        	System.out.println("FINISH !");
         }
     }
 
     static class MyThread extends Thread {
         private final Counter counter;
-
+        //private String name;
         public MyThread(Counter counter) {
             this.counter = counter;
+            //this.name = name;
         }
 
         @Override
         public void run() {
-            counter.count();
+        	synchronized (counter) {
+                counter.count();
+                //System.out.println(this.name);
+        	}
         }
     }
 
